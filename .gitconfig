@@ -1,0 +1,12 @@
+[user]
+	name        = Kevin Richardson
+  email       = kevin@magically.us
+[color]
+  branch      = auto
+  diff        = auto
+  interactive = auto
+  status      = auto
+[core]
+  editor      = vim
+[merge]
+  tool        = vimdiff
