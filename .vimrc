@@ -55,6 +55,7 @@ nnoremap <c-j> <c-w>j   " easier navigation between split windows.
 nnoremap <c-k> <c-w>k   " switch based on window direction relative to current buffer.
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+nnoremap <leader><leader> <c-^>   " alternate between buffers with <leader><leader>
 
 map <leader>n :NERDTreeToggle<CR> " Turn on/off NERDTree.
 
@@ -62,12 +63,12 @@ map <leader>F :FufFile<CR>        " FuzzyFinder
 map <leader>f :FufTaggedFile<CR>
 map <leader>s :FufTag<CR>
 
-nnoremap <leader><leader> <c-^>   " alternate between buffers with <leader><leader>
-
 nmap <leader>a= :Tabularize /=<CR>
 vmap <leader>a= :Tabularize /=<CR>
 nmap <leader>a: :Tabularize /:\zs<CR>
 vmap <leader>a: :Tabularize /:\zs<CR>
+
+nmap <leader>c <c-_><c-_> " Make it a bit easier to run tComment
 
 " Call pathogen to load plugins and update helptags.
 filetype off
