@@ -59,8 +59,8 @@ nnoremap <leader><leader> <c-^>   " alternate between buffers with <leader><lead
 
 map <leader>n :NERDTreeToggle<CR> " Turn on/off NERDTree.
 
-map <leader>F :FufFile<CR>        " FuzzyFinder
-map <leader>f :FufTaggedFile<CR>
+map <leader>f :FufFile **/<CR>        " FuzzyFinder
+map <leader>F :FufTaggedFile<CR>
 map <leader>s :FufTag<CR>
 
 nmap <leader>a= :Tabularize /=<CR>
