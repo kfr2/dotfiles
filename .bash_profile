@@ -97,3 +97,6 @@ export PS1="\[$Cyan\]\@ \[$Yellow\][\[$Purple\]\w\[$Yellow\]]\[$White\]$ \[$Colo
 # Have ls output be colored.
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad
+
+# Command aliases.
+alias 'l'='ls -al'

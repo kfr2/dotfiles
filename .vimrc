@@ -10,9 +10,11 @@ syntax on						                    " turn on syntax highlighting
 set number						                  " always show line numbers
 set ruler						                    " show the cursor position all the time
 set foldmethod=indent			              " fold around indents
+set foldlevel=20                        " configures fold level beginning
 set showmatch					                  " show matching parentheses
 set noerrorbells visualbell t_vb=       " turn off screen flashing
 autocmd GUIEnter * set visualbell t_vb=
+set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ (%p%%)]\ Col:%c
 
 " [TEXT-ENTRY]
 set backspace=indent,eol,start	" allow backspacing over everything in insert mode
@@ -41,12 +43,12 @@ set guioptions-=T				      " remove the toolbar
 " [MISC]
 set history=50				" keep 50 lines of command line history
 set undolevels=100		" number of levels of undo
-set autochdir					" change the working directory to that of the file in the current buffer
+"set autochdir					" change the working directory to that of the file in the current buffer
 set visualbell				" don't beep
 set noerrorbells			" don't beep
-set nobackup					" don't make swap files
-set noswapfile
-
+set backupdir=~/.vim/tmp/backup/  " backups directory
+set directory=~/.vim/tmp/swap/  " swap files
+set backup
 
 " [KEY-MAPPINGS]
 let mapleader = ","
@@ -57,9 +59,11 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <leader><leader> <c-^>   " alternate between buffers with <leader><leader>
 
-map <leader>n :NERDTreeToggle<CR> " Turn on/off NERDTree.
+" Turns on/off NERDTree.
+map <leader>n :NERDTreeToggle<CR>
 
-map <leader>f :FufFile **/<CR>        " FuzzyFinder
+" FuzzyFinder
+map <leader>f :FufFile **/<CR>
 map <leader>F :FufTaggedFile<CR>
 map <leader>s :FufTag<CR>
 
