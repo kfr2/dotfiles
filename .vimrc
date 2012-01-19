@@ -14,7 +14,7 @@ set foldlevel=20                        " configures fold level beginning
 set showmatch					                  " show matching parentheses
 set noerrorbells visualbell t_vb=       " turn off screen flashing
 autocmd GUIEnter * set visualbell t_vb=
-set statusline=%F%m%r%h%w\ [TYPE=%Y\ %{&ff}]\ [%l/%L\ (%p%%)]\ Col:%c
+set laststatus=2                        " Always show the statusline
 
 " [TEXT-ENTRY]
 set backspace=indent,eol,start	" allow backspacing over everything in insert mode

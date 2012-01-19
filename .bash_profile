@@ -100,3 +100,4 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 
 # Command aliases.
 alias 'l'='ls -al'
+alias 'cls'='clear'
