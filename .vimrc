@@ -3,6 +3,10 @@
 " ----------
 set nocompatible                        " Use Vim-only settings
 
+" Call pathogen to load plugins and update helptags.
+filetype off
+call pathogen#infect()
+call pathogen#helptags()
 
 " [DISPLAY]
 set nowrap						                  " don't wrap lines
@@ -76,11 +80,6 @@ vmap <leader>a: :Tabularize /:\zs<CR>
 nmap <leader>c <c-_><c-_> " Make it a bit easier to run tComment
 
 call togglebg#map("<F5>") " Alternate between solarized background types.
-
-" Call pathogen to load plugins and update helptags.
-filetype off
-call pathogen#infect()
-call pathogen#helptags()
 
 " Load file type detection, etc.
 if has("autocmd")
