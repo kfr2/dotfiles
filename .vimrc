@@ -34,7 +34,8 @@ set showcmd						" display incomplete commands
 
 " [GUI]
 set title										  " change the terminal's level
-colorscheme railscasts        " establish the colorscheme
+set background=dark
+colorscheme solarized        " establish the colorscheme
 set guifont=Inconsolata:h12   " establish the font
 set guioptions-=m				      " remove the menu bar
 set guioptions-=T				      " remove the toolbar
@@ -73,6 +74,8 @@ nmap <leader>a: :Tabularize /:\zs<CR>
 vmap <leader>a: :Tabularize /:\zs<CR>
 
 nmap <leader>c <c-_><c-_> " Make it a bit easier to run tComment
+
+call togglebg#map("<F5>") " Alternate between solarized background types.
 
 " Call pathogen to load plugins and update helptags.
 filetype off
