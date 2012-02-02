@@ -25,10 +25,6 @@ tags
 
 ## Java things
 *.class
-# Package Files #
-*.jar
-*.war
-*.ear
 
 ## XCode
 build/*

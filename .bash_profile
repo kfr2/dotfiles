@@ -101,3 +101,4 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 # Command aliases.
 alias 'l'='ls -al'
 alias 'cls'='clear'
+alias 'tmux'='TERM=screen-256color-bce tmux'

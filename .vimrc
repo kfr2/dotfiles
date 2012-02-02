@@ -77,8 +77,6 @@ vmap <leader>a= :Tabularize /=<CR>
 nmap <leader>a: :Tabularize /:\zs<CR>
 vmap <leader>a: :Tabularize /:\zs<CR>
 
-nmap <leader>c <c-_><c-_> " Make it a bit easier to run tComment
-
 call togglebg#map("<F5>") " Alternate between solarized background types.
 
 " Load file type detection, etc.
