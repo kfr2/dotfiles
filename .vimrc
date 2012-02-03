@@ -14,7 +14,9 @@ syntax on						                    " turn on syntax highlighting
 set number						                  " always show line numbers
 set ruler						                    " show the cursor position all the time
 set foldmethod=indent			              " fold around indents
-set foldlevel=20                        " configures fold level beginning
+set foldnestmax=10                      " set deepest fold level
+set foldlevel=1                         " configures fold level beginning
+set nofoldenable                        " don't enable folding by default
 set showmatch					                  " show matching parentheses
 set noerrorbells visualbell t_vb=       " turn off screen flashing
 autocmd GUIEnter * set visualbell t_vb=
