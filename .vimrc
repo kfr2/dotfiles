@@ -26,7 +26,7 @@ set laststatus=2                        " Always show the statusline
 set backspace=indent,eol,start	" allow backspacing over everything in insert mode
 set autoindent					        " auto indentation
 set copyindent					        " copy previous indentation level
-set tabstop=2 shiftwidth=2		  " number of spaces to use with indenting
+set tabstop=4 shiftwidth=4		  " number of spaces to use with indenting
 set shiftround					        " use multiples of shiftwidth for "<" and ">"
 set smarttab					          " insert tabs at beginning of line according to shiftwidth
 set expandtab									  " use spaces instead of tabs
