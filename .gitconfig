@@ -1,5 +1,5 @@
 [user]
-	name        = Kevin Richardson
+  name      = Kevin Richardson
   email       = kevin@magically.us
 [color]
   branch      = auto
@@ -8,7 +8,7 @@
   status      = auto
 [core]
   editor      = vim
-	excludesfile = ~/.gitignore
+  excludesfile = ~/.gitignore
 [alias]
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [merge]

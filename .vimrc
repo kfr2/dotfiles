@@ -1,5 +1,5 @@
 " Vim configuration file for Kevin Richardson <kevin@magically.us>
-" Last update:  24-Dec-2011
+" https://github.com/kfredrichardson/dotfiles/blob/master/.vimrc
 " ----------
 set nocompatible                        " Use Vim-only settings
 

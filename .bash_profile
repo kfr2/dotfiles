@@ -1,5 +1,5 @@
 # Kevin Richardson <kevin@magically.us>
-# Last update: 2011-12-24 5:20pm
+# https://github.com/kfredrichardson/dotfiles/master/.bash_profile
 
 # Load RVM environment and settings.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
