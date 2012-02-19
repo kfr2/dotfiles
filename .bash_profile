@@ -5,7 +5,7 @@
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # Update PATH to include android SDK.
-export PATH=~/Developer/sdk/android-sdk-macosx/tools:~/Developer/sdk/android-sdk-macosx/platform-tools:$PATH
+export PATH=/opt/android-sdk-macosx/tools:/opt/android-sdk-macosx/platform-tools:$PATH
 
 # Update PATH to include MacPorts
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
