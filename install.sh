@@ -5,3 +5,4 @@ ln -s .vimrc ~/.vimrc
 ln -s .bash_profile ~/.bash_profile
 ln -s .gitconfig ~/.gitconfig
 ln -s .gitignore ~/.gitignore
+ln -s .crontab ~/.crontab

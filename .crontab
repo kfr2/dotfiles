@@ -1,1 +1,4 @@
+# growl utilities
 0 * * * * /Users/kevin/Developer/bash/growl-time.sh 
+0 * * * * /Users/kevin/Developer/bash/growl-weather.sh 
+## 8,23,38,53 * * * * /Users/kevin/Developer/bash/say-time.sh
