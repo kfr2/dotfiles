@@ -60,6 +60,8 @@ set backup
 " [KEY-MAPPINGS]
 let mapleader = ","
 
+noremap <silent><Leader>/ :nohls<CR>  " clear search highlights
+
 nnoremap <c-j> <c-w>j   " easier navigation between split windows.
 nnoremap <c-k> <c-w>k   " switch based on window direction relative to current buffer.
 nnoremap <c-h> <c-w>h
