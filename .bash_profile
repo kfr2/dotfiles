@@ -4,11 +4,18 @@
 # Load RVM environment and settings.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
+# Load tmuxinator environment.
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator_completion ]] && source $HOME/.tmuxinator/scripts/tmuxinator_completion
+
 # Update PATH to include android SDK.
 export PATH=/opt/android-sdk-macosx/tools:/opt/android-sdk-macosx/platform-tools:$PATH
 
-# Update PATH to include MacPorts
+# Update PATH to include MacPorts.
 export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+
+# Various settings.
+export EDITOR="vim"
 
 # Don't do anything else if not running interactively.
 [ -z "$PS1" ] && return
