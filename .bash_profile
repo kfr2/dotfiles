@@ -11,12 +11,17 @@
 # Update PATH to include android SDK.
 export PATH=/opt/android-sdk-macosx/tools:/opt/android-sdk-macosx/platform-tools:$PATH
 
-# Update PATH to include MacPorts.
-export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+# Homebrew settings.
+if [ -f `brew --prefix`/etc/bash_completion ]; then
+        . `brew --prefix`/etc/bash_completion
+fi
+
+export BYOBU_PREFIX=`brew --prefix`
 
 # Various settings.
 export EDITOR="vim"
 export ARCHFLAGS="-arch x86_64"
+
 
 # Don't do anything else if not running interactively.
 [ -z "$PS1" ] && return
