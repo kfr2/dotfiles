@@ -16,6 +16,7 @@ export PATH=/opt/local/bin:/opt/local/sbin:$PATH
 
 # Various settings.
 export EDITOR="vim"
+export ARCHFLAGS="-arch x86_64"
 
 # Don't do anything else if not running interactively.
 [ -z "$PS1" ] && return
