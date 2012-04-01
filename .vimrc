@@ -42,7 +42,7 @@ set showcmd						" display incomplete commands
 set title										  " change the terminal's level
 set background=dark
 colorscheme solarized        " establish the colorscheme
-set guifont=Inconsolata:h12   " establish the font
+set guifont=Inconsolata:h13   " establish the font
 set guioptions-=m				      " remove the menu bar
 set guioptions-=T				      " remove the toolbar
 
