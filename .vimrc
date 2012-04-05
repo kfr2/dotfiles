@@ -1,7 +1,7 @@
 " Vim configuration file for Kevin Richardson <kevin@magically.us>
 " https://github.com/kfredrichardson/dotfiles/blob/master/.vimrc
 " ----------
-set nocompatible                        " Use Vim-only settings
+set nocompatible                       " Use Vim-only settings
 
 " Call pathogen to load plugins and update helptags.
 filetype off
@@ -9,64 +9,64 @@ call pathogen#infect()
 call pathogen#helptags()
 
 " [DISPLAY]
-set nowrap						                  " don't wrap lines
-syntax on						                    " turn on syntax highlighting
-set number						                  " always show line numbers
-set ruler						                    " show the cursor position all the time
-set foldmethod=indent			              " fold around indents
+set nowrap						        " don't wrap lines
+syntax on						        " turn on syntax highlighting
+set number						        " always show line numbers
+set ruler						        " show the cursor position all the time
+set foldmethod=indent			        " fold around indents
 set foldnestmax=10                      " set deepest fold level
 set foldlevel=1                         " configures fold level beginning
 set nofoldenable                        " don't enable folding by default
-set showmatch					                  " show matching parentheses
+set showmatch					        " show matching parentheses
 set noerrorbells visualbell t_vb=       " turn off screen flashing
 autocmd GUIEnter * set visualbell t_vb=
 set laststatus=2                        " Always show the statusline
 
 " [TEXT-ENTRY]
-set backspace=indent,eol,start	" allow backspacing over everything in insert mode
+set backspace=indent,eol,start	        " allow backspacing over everything in insert mode
 set autoindent					        " auto indentation
 set copyindent					        " copy previous indentation level
-set tabstop=4 shiftwidth=4		  " number of spaces to use with indenting
+set tabstop=4 shiftwidth=4		        " number of spaces to use with indenting
 set shiftround					        " use multiples of shiftwidth for "<" and ">"
-set smarttab					          " insert tabs at beginning of line according to shiftwidth
-set expandtab									  " use spaces instead of tabs
+set smarttab					        " insert tabs at beginning of line according to shiftwidth
+"set expandtab						    " use spaces instead of tabs
 
 " [SEARCHING]
-set hlsearch					" highlight search terms
-set incsearch					" show search matches as you type
-set ignorecase			  " ignore case when searching
-set smartcase					" ... unless term contains at least one capital letter
-set showcmd						" display incomplete commands
+set hlsearch					        " highlight search terms
+set incsearch					        " show search matches as you type
+set ignorecase			                " ignore case when searching
+set smartcase       					" ... unless term contains at least one capital letter
+set showcmd		         				" display incomplete commands
 
 " [GUI]
-set title										  " change the terminal's level
+set title			                    " change the terminal's level
 set background=dark
-colorscheme solarized        " establish the colorscheme
-set guifont=Inconsolata:h13   " establish the font
-set guioptions-=m				      " remove the menu bar
-set guioptions-=T				      " remove the toolbar
+colorscheme solarized                   " establish the colorscheme
+set guifont=Inconsolata:h13             " establish the font
+set guioptions-=m				        " remove the menu bar
+set guioptions-=T				        " remove the toolbar
 
 
 " [MISC]
-set history=50				" keep 50 lines of command line history
-set undolevels=100		" number of levels of undo
-"set autochdir					" change the working directory to that of the file in the current buffer
-set visualbell				" don't beep
-set noerrorbells			" don't beep
-set backupdir=~/.vim/tmp/backup/  " backups directory
-set directory=~/.vim/tmp/swap/  " swap files
+set history=50				            " keep 50 lines of command line history
+set undolevels=100		                " number of levels of undo
+"set autochdir					        " change the working directory to that of the file in the current buffer
+set visualbell		              		" don't beep
+set noerrorbells			            " don't beep
+set backupdir=~/.vim/tmp/backup/        " backups directory
+set directory=~/.vim/tmp/swap/          " swap files
 set backup
 
 " [KEY-MAPPINGS]
 let mapleader = ","
 
-noremap <silent><Leader>/ :nohls<CR>  " clear search highlights
+noremap <silent><Leader>/ :nohls<CR>    " clear search highlights
 
-nnoremap <c-j> <c-w>j   " easier navigation between split windows.
-nnoremap <c-k> <c-w>k   " switch based on window direction relative to current buffer.
+nnoremap <c-j> <c-w>j                   " easier navigation between split windows.
+nnoremap <c-k> <c-w>k                   " switch based on window direction relative to current buffer.
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-nnoremap <leader><leader> <c-^>   " alternate between buffers with <leader><leader>
+nnoremap <leader><leader> <c-^>         " alternate between buffers with <leader><leader>
 
 " Turns on/off NERDTree.
 map <leader>n :NERDTreeToggle<CR>
@@ -81,7 +81,7 @@ vmap <leader>a= :Tabularize /=<CR>
 nmap <leader>a: :Tabularize /:\zs<CR>
 vmap <leader>a: :Tabularize /:\zs<CR>
 
-call togglebg#map("<F5>") " Alternate between solarized background types.
+call togglebg#map("<F5>")               " Alternate between solarized background types.
 
 " Load file type detection, etc.
 if has("autocmd")
