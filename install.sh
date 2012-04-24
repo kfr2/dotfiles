@@ -6,3 +6,4 @@ ln -s .bash_profile ~/.bash_profile
 ln -s .gitconfig ~/.gitconfig
 ln -s .gitignore ~/.gitignore
 ln -s .crontab ~/.crontab
+ln -s .hushlogin ~/.hushlogin
