@@ -108,7 +108,8 @@ On_IWhite='\e[0;107m'   # White
 
 
 # Change the prompt's style.
-export PS1="\[$Cyan\]\@ \[$Yellow\][\[$Purple\]\w\[$Yellow\]]\[$White\]$ \[$Color_Off\]"
+PS1="\[$Cyan\]\@ \[$Yellow\][\[$Purple\]\w\[$Yellow\]]\[$White\]$ \[$Color_Off\]"
+export PS1="\[\033[G\]$PS1"
 
 # Have ls output be colored.
 export CLICOLOR=1
