@@ -19,9 +19,6 @@ fi
 # Homebrew settings.
 export BYOBU_PREFIX=`brew --prefix`
 
-# Load virtualenvwrapper
-source /usr/local/bin/virtualenvwrapper.sh
-
 # Various settings.
 export EDITOR="vim"
 export ARCHFLAGS="-arch x86_64"

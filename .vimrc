@@ -26,10 +26,12 @@ set laststatus=2                        " Always show the statusline
 set backspace=indent,eol,start	        " allow backspacing over everything in insert mode
 set autoindent					        " auto indentation
 set copyindent					        " copy previous indentation level
-set tabstop=4 shiftwidth=4		        " number of spaces to use with indenting
-set shiftround					        " use multiples of shiftwidth for "<" and ">"
+set tabstop=4                           " control number of spaces with tab
+set shiftwidth=4		                " number of spaces to use with indenting (<,>)
+set softtabstop=4                       " deletes N spaces as if they were <TAB>
+set expandtab						    " use spaces instead of tabs when <TAB> is pressed
 set smarttab					        " insert tabs at beginning of line according to shiftwidth
-set expandtab						    " use spaces instead of tabs
+set shiftround					        " use multiples of shiftwidth for "<" and ">"
 
 " [SEARCHING]
 set hlsearch					        " highlight search terms
@@ -53,9 +55,9 @@ set undolevels=100		                " number of levels of undo
 "set autochdir					        " change the working directory to that of the file in the current buffer
 set visualbell		              		" don't beep
 set noerrorbells			            " don't beep
-set backupdir=~/.vim/tmp/backup/        " backups directory
+"set backupdir=~/.vim/tmp/backup/        " backups directory
 set directory=~/.vim/tmp/swap/          " swap files
-set backup
+"set backup
 
 " [KEY-MAPPINGS]
 let mapleader = ","
@@ -110,6 +112,49 @@ if has("autocmd")
     \ endif
 
   augroup END
+
+  " Auto indent after several of Python's keywords.
+  autocmd BufRead *.py set smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+
+  " Trim whitespace from the ends of lines when saving a Python file.
+  autocmd BufWritePre *.py normal m`:%s/\s\+$//e``
+
+  " Enable easier jumping between relative Django files.
+  let g:last_relative_dir = ''
+  nnoremap \1 :call RelatedFile ("models.py")<cr>
+  nnoremap \2 :call RelatedFile ("views.py")<cr>
+  nnoremap \3 :call RelatedFile ("urls.py")<cr>
+  nnoremap \4 :call RelatedFile ("admin.py")<cr>
+  nnoremap \5 :call RelatedFile ("tests.py")<cr>
+  nnoremap \6 :call RelatedFile ( "templates/" )<cr>
+  nnoremap \7 :call RelatedFile ( "templatetags/" )<cr>
+  nnoremap \8 :call RelatedFile ( "management/" )<cr>
+  nnoremap \0 :e settings.py<cr>
+  nnoremap \9 :e urls.py<cr>
+
+  fun! RelatedFile(file)
+    " This is to check that the directory looks djangoish
+    if filereadable(expand("%:h"). '/models.py') || isdirectory(expand("%:h") . "/templatetags/")
+      exec "edit %:h/" . a:file
+      let g:last_relative_dir = expand("%:h") . '/'
+      return ''
+    endif
+    if g:last_relative_dir != ''
+      exec "edit " . g:last_relative_dir . a:file
+      return ''
+    endif
+    echo "Cant determine where relative file is : " . a:file
+    return ''
+  endfun
+
+  fun SetAppDir()
+    if filereadable(expand("%:h"). '/models.py') || isdirectory(expand("%:h") . "/templatetags/")
+      let g:last_relative_dir = expand("%:h") . '/'
+      return ''
+    endif
+  endfun
+
+  autocmd BufEnter *.py call SetAppDir()
 
 endif " has("autocmd")
 
