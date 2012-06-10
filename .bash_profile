@@ -8,6 +8,11 @@
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
 [[ -s $HOME/.tmuxinator/scripts/tmuxinator_completion ]] && source $HOME/.tmuxinator/scripts/tmuxinator_completion
 
+# Virtualenvwrapper setup.
+export WORKON_HOME=~/Envs
+export PROJECT_HOME=~/Developer
+source /usr/local/bin/virtualenvwrapper.sh
+
 # Update PATH to include android SDK.
 export PATH=/opt/android-sdk-macosx/tools:/opt/android-sdk-macosx/platform-tools:$PATH
 
