@@ -21,6 +21,9 @@ set showmatch					        " show matching parentheses
 set noerrorbells visualbell t_vb=       " turn off screen flashing
 autocmd GUIEnter * set visualbell t_vb=
 set laststatus=2                        " Always show the statusline
+if exists('+colorcolumn')
+    set colorcolumn=80
+endif
 
 " [TEXT-ENTRY]
 set backspace=indent,eol,start	        " allow backspacing over everything in insert mode
@@ -29,7 +32,7 @@ set copyindent					        " copy previous indentation level
 set tabstop=4                           " control number of spaces with tab
 set shiftwidth=4		                " number of spaces to use with indenting (<,>)
 set softtabstop=4                       " deletes N spaces as if they were <TAB>
-set expandtab						    " use spaces instead of tabs when <TAB> is pressed
+"set expandtab						    " use spaces instead of tabs when <TAB> is pressed
 set smarttab					        " insert tabs at beginning of line according to shiftwidth
 set shiftround					        " use multiples of shiftwidth for "<" and ">"
 
@@ -55,9 +58,9 @@ set undolevels=100		                " number of levels of undo
 "set autochdir					        " change the working directory to that of the file in the current buffer
 set visualbell		              		" don't beep
 set noerrorbells			            " don't beep
-"set backupdir=~/.vim/tmp/backup/        " backups directory
-set directory=~/.vim/tmp/swap/          " swap files
-"set backup
+set nobackup
+set nowritebackup
+set noswapfile
 
 " [KEY-MAPPINGS]
 let mapleader = ","
@@ -80,9 +83,12 @@ map <leader>s :FufTag<CR>
 
 nmap <leader>a= :Tabularize /=<CR>
 vmap <leader>a= :Tabularize /=<CR>
+nmap <leader>a- :Tabularize /-<CR>
+vmap <leader>a- :Tabularize /-<CR>
 nmap <leader>a: :Tabularize /:\zs<CR>
 vmap <leader>a: :Tabularize /:\zs<CR>
 
+:nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> " open Marked.app
 call togglebg#map("<F5>")               " Alternate between solarized background types.
 
 " Load file type detection, etc.
