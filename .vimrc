@@ -32,7 +32,7 @@ set copyindent					        " copy previous indentation level
 set tabstop=4                           " control number of spaces with tab
 set shiftwidth=4		                " number of spaces to use with indenting (<,>)
 set softtabstop=4                       " deletes N spaces as if they were <TAB>
-"set expandtab						    " use spaces instead of tabs when <TAB> is pressed
+set expandtab						    " use spaces instead of tabs when <TAB> is pressed
 set smarttab					        " insert tabs at beginning of line according to shiftwidth
 set shiftround					        " use multiples of shiftwidth for "<" and ">"
 
@@ -47,7 +47,8 @@ set showcmd		         				" display incomplete commands
 set title			                    " change the terminal's level
 set background=dark
 colorscheme solarized                   " establish the colorscheme
-set guifont=Inconsolata:h13             " establish the font
+set guifont=Inconsolata-dz\ for\ Powerline:h13             " establish the font
+let g:Powerline_symbols = 'fancy'	    " activate symbols for vim-powerline
 set guioptions-=m				        " remove the menu bar
 set guioptions-=T				        " remove the toolbar
 

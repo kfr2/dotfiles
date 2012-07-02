@@ -27,7 +27,7 @@ plugins=(django git hg mercurial pip python vi-mode zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/opt/android-sdk-macosx/tools:/opt/android-sdk-macosx/platform-tools:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/texbin
+export PATH=/usr/local/mysql/bin:/opt/android-sdk-macosx/tools:/opt/android-sdk-macosx/platform-tools:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:/usr/texbin
 
 # Load RVM environment and settings.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
@@ -39,6 +39,9 @@ source /usr/local/bin/virtualenvwrapper.sh
 
 # Homebrew settings.
 export BYOBU_PREFIX=`brew --prefix`
+
+# Library shenanigans.
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
 
 # Various settings.
 export EDITOR="vim"
