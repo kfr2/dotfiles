@@ -28,6 +28,7 @@ source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
 export PATH=/usr/local/mysql/bin:/opt/android-sdk-macosx/tools:/opt/android-sdk-macosx/platform-tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 # Load RVM environment and settings.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
