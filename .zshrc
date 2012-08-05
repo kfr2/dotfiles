@@ -56,6 +56,8 @@ alias 'fdu'='fab dev update'
 alias 'ftu'='fab test update'
 alias 'fpu'='fab prod update'
 alias 'rs'='./manage.py runserver 0.0.0.0:8000'
+alias 'server'='python -m SimpleHTTPServer 8888'
+alias 'v'='vagrant'
 
 # Jump around, jump around. Jump up and get down.
 . ~/bin/z.sh
