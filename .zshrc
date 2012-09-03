@@ -22,13 +22,12 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(django git hg mercurial pip python vi-mode zsh-syntax-highlighting)
+plugins=(django git hg mercurial pip python zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=/usr/local/mysql/bin:/opt/android-sdk-macosx/tools:/opt/android-sdk-macosx/platform-tools:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin:/usr/texbin
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=$HOME/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 
 # Load RVM environment and settings.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
@@ -41,9 +40,6 @@ source /usr/local/bin/virtualenvwrapper.sh
 # Homebrew settings.
 export BYOBU_PREFIX=`brew --prefix`
 
-# Library shenanigans.
-export DYLD_LIBRARY_PATH=/usr/local/mysql/lib
-
 # Various settings.
 export EDITOR="subl -w"
 export ARCHFLAGS="-arch x86_64"
@@ -52,7 +48,6 @@ export ARCHFLAGS="-arch x86_64"
 alias 'l'='ls -al'
 alias 'cls'='clear'
 alias 'tmux'='TERM=screen-256color-bce tmux'
-alias 'fdu'='fab dev update'
 alias 'ftu'='fab test update'
 alias 'fpu'='fab prod update'
 alias 'rs'='./manage.py runserver 0.0.0.0:8000'
