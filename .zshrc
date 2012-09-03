@@ -44,6 +44,18 @@ export BYOBU_PREFIX=`brew --prefix`
 export EDITOR="subl -w"
 export ARCHFLAGS="-arch x86_64"
 
+
+# Functions
+function make_dir_switch() {
+    mkdir $1 && cd $1
+}
+
+function server() {
+    local port="${1:-8888}"
+    open "http://localhost:${port}/"
+    python -m SimpleHTTPServer "$port"
+}
+
 # Command aliases.
 alias 'l'='ls -al'
 alias 'cls'='clear'
@@ -51,11 +63,11 @@ alias 'tmux'='TERM=screen-256color-bce tmux'
 alias 'ftu'='fab test update'
 alias 'fpu'='fab prod update'
 alias 'rs'='./manage.py runserver 0.0.0.0:8000'
-alias 'server'='python -m SimpleHTTPServer 8888'
 alias 'v'='vagrant'
+alias 'md'='make_dir_switch'
 
-# Jump around, jump around. Jump up and get down.
-. ~/bin/z.sh
+# Add Z
+source ~/bin/z.sh
 function precmd () {
   _z --add "$(pwd -P)"
 }
