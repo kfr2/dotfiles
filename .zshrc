@@ -27,7 +27,7 @@ plugins=(django git hg mercurial pip python zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$HOME/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+export PATH=$HOME/bin:$HOME/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 
 # Load RVM environment and settings.
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
