@@ -1,5 +1,4 @@
-" Vim configuration file for Kevin Richardson <kevin@magically.us>
-" https://github.com/kfredrichardson/dotfiles/blob/master/.vimrc
+" https://github.com/kfr2/dotfiles/blob/master/.vimrc
 " ----------
 set nocompatible                       " Use Vim-only settings
 
@@ -8,22 +7,20 @@ filetype off
 call pathogen#infect()
 call pathogen#helptags()
 
-" [DISPLAY]
-set nowrap						        " don't wrap lines
+" [EDITING]
+filetype plugin indent on               " automatic filetype detection
 syntax on						        " turn on syntax highlighting
+set cursorline                          " highlight the cursor's line
+set nowrap						        " don't wrap lines
 set number						        " always show line numbers
-set ruler						        " show the cursor position all the time
+set ruler						        " show the cursor position all the time on the status bar
 set foldmethod=indent			        " fold around indents
 set foldnestmax=10                      " set deepest fold level
 set foldlevel=1                         " configures fold level beginning
 set nofoldenable                        " don't enable folding by default
 set showmatch					        " show matching parentheses
 set noerrorbells visualbell t_vb=       " turn off screen flashing
-autocmd GUIEnter * set visualbell t_vb=
 set laststatus=2                        " Always show the statusline
-if exists('+colorcolumn')
-    set colorcolumn=80
-endif
 
 " [TEXT-ENTRY]
 set backspace=indent,eol,start	        " allow backspacing over everything in insert mode
@@ -35,6 +32,8 @@ set softtabstop=4                       " deletes N spaces as if they were <TAB>
 set expandtab						    " use spaces instead of tabs when <TAB> is pressed
 set smarttab					        " insert tabs at beginning of line according to shiftwidth
 set shiftround					        " use multiples of shiftwidth for "<" and ">"
+set wildmenu                            " show list instead of auto completing
+set wildmode=list:longest,full          " command completion <TAB>, list matches, then longest common part, then all
 
 " [SEARCHING]
 set hlsearch					        " highlight search terms
@@ -44,19 +43,32 @@ set smartcase       					" ... unless term contains at least one capital letter
 set showcmd		         				" display incomplete commands
 
 " [GUI]
+set mouse=a                             " enable use of the mouse
+map <ScrollWheelUp> <C-Y>
+map <ScrollWheelDown> <C-E>
 set title			                    " change the terminal's level
-set background=dark
 colorscheme solarized                   " establish the colorscheme
-set guifont=Inconsolata-dz\ for\ Powerline:h13             " establish the font
-let g:Powerline_symbols = 'fancy'	    " activate symbols for vim-powerline
-set guioptions-=m				        " remove the menu bar
-set guioptions-=T				        " remove the toolbar
-
+set background=dark
+set guifont=Inconsolata-dz\ for\ Powerline:h12 
+let g:Powerline_symbols = 'fancy'		" establish the font. Powerline fonts are available from http://bit.ly/zRuZ4V
+if has('gui_running')
+	set guioptions-=m				    " remove the menu bar
+	set guioptions-=T					" remove the toolbar
+    if exists('+colorcolumn')
+        set colorcolumn=80				" Highlight the 80th column (for PEP8, etc)
+    endif
+	if has('gui_macvim')
+		set transparency=5
+	endif
+else
+	if &term == 'xterm' || &term == 'screen'
+		set t_Co=256                    " use 256 colors in terminal
+	endif
+endif
 
 " [MISC]
-set history=50				            " keep 50 lines of command line history
-set undolevels=100		                " number of levels of undo
-"set autochdir					        " change the working directory to that of the file in the current buffer
+set history=1000				        " keep 50 lines of command line history
+set undolevels=1000		                " number of levels of undo
 set visualbell		              		" don't beep
 set noerrorbells			            " don't beep
 set nobackup
@@ -74,14 +86,14 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <leader><leader> <c-^>         " alternate between buffers with <leader><leader>
 
-" Turns on/off NERDTree.
+" NERDTree toggle
 map <leader>n :NERDTreeToggle<CR>
 
 " FuzzyFinder
-map <leader>f :FufFile **/<CR>
-map <leader>F :FufTaggedFile<CR>
-map <leader>s :FufTag<CR>
+map <leader>p :CtrlP<CR>
+map <leader>P :CtrlPMRU<CR>
 
+" Tabularize
 nmap <leader>a= :Tabularize /=<CR>
 vmap <leader>a= :Tabularize /=<CR>
 nmap <leader>a- :Tabularize /-<CR>
@@ -89,34 +101,33 @@ vmap <leader>a- :Tabularize /-<CR>
 nmap <leader>a: :Tabularize /:\zs<CR>
 vmap <leader>a: :Tabularize /:\zs<CR>
 
-:nnoremap <leader>m :silent !open -a Marked.app '%:p'<cr> " open Marked.app
 call togglebg#map("<F5>")               " Alternate between solarized background types.
 
 " Load file type detection, etc.
 if has("autocmd")
-
-  " Enable file type detection.
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
+  autocmd GUIEnter * set visualbell t_vb=
+  "autocmd BufEnter * silent! lcd %:p:h    " change the working directory to that of the file in the current buffer
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
-  au!
+    au!
 
-  " For all text files set 'textwidth' to 78 characters.
-  autocmd FileType text setlocal textwidth=78
+    " For all text files set 'textwidth' to 78 characters.
+    autocmd FileType text setlocal textwidth=78
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    " Also don't do it when the mark is in the first line, that is the default
+    " position when opening a file.
+    autocmd BufReadPost *
+        \ if line("'\"") > 1 && line("'\"") <= line("$") |
+        \   exe "normal! g`\"" |
+        \ endif
+    
+    " Highlight all characters past 79 columns.
+    autocmd BufEnter * highlight OverLength ctermbg=White guibg=#F8F8F8
+    autocmd BufEnter * match OverLength /\%79v.*/
 
   augroup END
 
