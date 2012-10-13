@@ -41,7 +41,7 @@ source /usr/local/bin/virtualenvwrapper.sh
 export BYOBU_PREFIX=`brew --prefix`
 
 # Various settings.
-export EDITOR="subl -w"
+export EDITOR="vim"
 export ARCHFLAGS="-arch x86_64"
 
 
