@@ -14,7 +14,7 @@ DISABLE_AUTO_UPDATE="true"
 # DISABLE_LS_COLORS="true"
 
 # Uncomment following line if you want to disable autosetting terminal title.
-# DISABLE_AUTO_TITLE="true"
+DISABLE_AUTO_TITLE="true"
 
 # Uncomment following line if you want red dots to be displayed while waiting for completion
 COMPLETION_WAITING_DOTS="true"
@@ -65,7 +65,6 @@ alias 'fpu'='fab prod update'
 alias 'rs'='./manage.py runserver 0.0.0.0:8000'
 alias 'v'='vagrant'
 alias 'md'='make_dir_switch'
-alias 'vim'='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 # Add Z
 source ~/bin/z.sh
