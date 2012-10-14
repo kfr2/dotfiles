@@ -65,6 +65,7 @@ alias 'fpu'='fab prod update'
 alias 'rs'='./manage.py runserver 0.0.0.0:8000'
 alias 'v'='vagrant'
 alias 'md'='make_dir_switch'
+alias 'vim'='/Applications/MacVim.app/Contents/MacOS/Vim'
 
 # Add Z
 source ~/bin/z.sh
