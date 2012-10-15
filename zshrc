@@ -35,7 +35,7 @@ export PATH=$HOME/bin:$HOME/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbi
 # Virtualenvwrapper setup.
 export WORKON_HOME=~/Envs
 export PROJECT_HOME=~/Developer
-source /usr/local/bin/virtualenvwrapper.sh
+source /usr/local/bin/virtualenvwrapper_lazy.sh
 
 # Homebrew settings.
 export BYOBU_PREFIX=`brew --prefix`
