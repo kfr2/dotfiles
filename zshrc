@@ -27,15 +27,18 @@ plugins=(django git hg mercurial pip python zsh-syntax-highlighting)
 source $ZSH/oh-my-zsh.sh
 
 # Customize to your needs...
-export PATH=$HOME/bin:$HOME/.rvm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
+export PATH=$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/X11/bin
 
-# Load RVM environment and settings.
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
+# rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # Virtualenvwrapper setup.
 export WORKON_HOME=~/Envs
 export PROJECT_HOME=~/Developer
 source /usr/local/bin/virtualenvwrapper_lazy.sh
+
+# Allow bpython to load Django settings upon start (if available)
+export PYTHONSTARTUP=~/.pythonrc
 
 # Homebrew settings.
 export BYOBU_PREFIX=`brew --prefix`
@@ -57,16 +60,20 @@ function server() {
 }
 
 # Command aliases.
-alias 'l'='ls -al'
 alias 'cls'='clear'
-alias 'tmux'='TERM=screen-256color-bce tmux'
+alias 'l'='ls -al'
 alias 'ftu'='fab test update'
 alias 'fpu'='fab prod update'
-alias 'rs'='./manage.py runserver 0.0.0.0:8000'
-alias 'v'='vagrant'
 alias 'md'='make_dir_switch'
+alias 'rs'='./manage.py runserver 0.0.0.0:$1'
+alias 'v'='vagrant'
+alias 'tmux'='TERM=screen-256color-bce tmux'
+alias 'tmux-buffer-to-clipboard'='tmux save-buffer -|pbcopy'
+alias 'tmux-buffer-from-clipboard'='tmux set-buffer "$(pbpaste)"'
+alias 'tbt'='tmux-buffer-to-clipboard'
+alias 'tbf'='tmux-buffer-from-clipboard'
 
-# Add Z
+# Add Z, the command jumper: https://github.com/rupa/z
 source ~/bin/z.sh
 function precmd () {
   _z --add "$(pwd -P)"
