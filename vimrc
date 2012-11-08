@@ -15,12 +15,13 @@ set nowrap						        " don't wrap lines
 set number						        " always show line numbers
 set ruler						        " show the cursor position all the time on the status bar
 set foldmethod=indent			        " fold around indents
+set foldlevel=99                        " configures fold level beginning
 set foldnestmax=10                      " set deepest fold level
-set foldlevel=1                         " configures fold level beginning
 set nofoldenable                        " don't enable folding by default
 set showmatch					        " show matching parentheses
 set noerrorbells visualbell t_vb=       " turn off screen flashing
 set laststatus=2                        " Always show the statusline
+set clipboard=unnamed                   " Set the clipboard for reattach-to-user-namespace
 
 " [TEXT-ENTRY]
 set backspace=indent,eol,start	        " allow backspacing over everything in insert mode
@@ -47,7 +48,7 @@ set mouse=a                             " enable use of the mouse
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 set title			                    " change the terminal's level
-colorscheme solarized                   " establish the colorscheme
+colorscheme Tomorrow-Night              " establish the colorscheme
 set background=dark
 set guifont=Inconsolata-dz\ for\ Powerline:h12 
 let g:Powerline_symbols = 'fancy'		" establish the font. Powerline fonts are available from http://bit.ly/zRuZ4V
@@ -101,7 +102,12 @@ vmap <leader>a- :Tabularize /-<CR>
 nmap <leader>a: :Tabularize /:\zs<CR>
 vmap <leader>a: :Tabularize /:\zs<CR>
 
-call togglebg#map("<F5>")               " Alternate between solarized background types.
+" SuperTab
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+set completeopt=menuone,longest,preview
+
+call togglebg#map("<F5>")               " Alternate between background types.
 
 " Load file type detection, etc.
 if has("autocmd")
