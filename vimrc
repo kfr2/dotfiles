@@ -2,76 +2,97 @@
 " ----------
 set nocompatible                       " Use Vim-only settings
 
-" Call pathogen to load plugins and update helptags.
+" Call Vundle to manage plugins.
 filetype off
-call pathogen#infect()
-call pathogen#helptags()
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" Plugins for Vundle to manage
+" -----
+" Usage:
+" :BundleList -- list configured bundles
+" :BundleInstall(!) -- install(update) bundles
+" :BundleClean -- confirm removal of unused bundles
+Bundle 'gmarik/vundle'
+
+Bundle 'jeffkreeftmeijer/vim-numbertoggle'
+Bundle 'jmcantrell/vim-virtualenv'
+Bundle 'kien/ctrlp.vim'
+Bundle 'Lokaltog/vim-powerline'
+Bundle 'mileszs/ack.vim'
+Bundle 'mnoble/tomorrow-night-vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'scrooloose/nerdtree'
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-fugitive'
 
 " [EDITING]
 filetype plugin indent on               " automatic filetype detection
-syntax on						        " turn on syntax highlighting
+syntax on                               " turn on syntax highlighting
 set cursorline                          " highlight the cursor's line
-set nowrap						        " don't wrap lines
-set number						        " always show line numbers
-set ruler						        " show the cursor position all the time on the status bar
-set foldmethod=indent			        " fold around indents
+set nowrap                              " don't wrap lines
+set number                              " always show line numbers
+set ruler                               " show the cursor position all the time on the status bar
+set foldmethod=indent                   " fold around indents
 set foldlevel=99                        " configures fold level beginning
 set foldnestmax=10                      " set deepest fold level
 set nofoldenable                        " don't enable folding by default
-set showmatch					        " show matching parentheses
+set showmatch                           " show matching parentheses
 set noerrorbells visualbell t_vb=       " turn off screen flashing
 set laststatus=2                        " Always show the statusline
 set clipboard=unnamed                   " Set the clipboard for reattach-to-user-namespace
 
 " [TEXT-ENTRY]
-set backspace=indent,eol,start	        " allow backspacing over everything in insert mode
-set autoindent					        " auto indentation
-set copyindent					        " copy previous indentation level
+set backspace=indent,eol,start          " allow backspacing over everything in insert mode
+set autoindent                          " auto indentation
+set copyindent                          " copy previous indentation level
 set tabstop=4                           " control number of spaces with tab
-set shiftwidth=4		                " number of spaces to use with indenting (<,>)
+set shiftwidth=4                        " number of spaces to use with indenting (<,>)
 set softtabstop=4                       " deletes N spaces as if they were <TAB>
-set expandtab						    " use spaces instead of tabs when <TAB> is pressed
-set smarttab					        " insert tabs at beginning of line according to shiftwidth
-set shiftround					        " use multiples of shiftwidth for "<" and ">"
+set expandtab                           " use spaces instead of tabs when <TAB> is pressed
+set smarttab                            " insert tabs at beginning of line according to shiftwidth
+set shiftround                          " use multiples of shiftwidth for "<" and ">"
 set wildmenu                            " show list instead of auto completing
 set wildmode=list:longest,full          " command completion <TAB>, list matches, then longest common part, then all
 
 " [SEARCHING]
-set hlsearch					        " highlight search terms
-set incsearch					        " show search matches as you type
-set ignorecase			                " ignore case when searching
-set smartcase       					" ... unless term contains at least one capital letter
-set showcmd		         				" display incomplete commands
+set hlsearch                            " highlight search terms
+set incsearch                           " show search matches as you type
+set ignorecase                          " ignore case when searching
+set smartcase                           " ... unless term contains at least one capital letter
+set showcmd                             " display incomplete commands
 
 " [GUI]
 set mouse=a                             " enable use of the mouse
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
-set title			                    " change the terminal's level
+set title                               " change the terminal's level
 colorscheme Tomorrow-Night              " establish the colorscheme
 set background=dark
 set guifont=Inconsolata-dz\ for\ Powerline:h12 
-let g:Powerline_symbols = 'fancy'		" establish the font. Powerline fonts are available from http://bit.ly/zRuZ4V
+let g:Powerline_symbols = 'fancy'       " establish the font. Powerline fonts are
+                                        " available from http://bit.ly/zRuZ4V
+
 if has('gui_running')
-	set guioptions-=m				    " remove the menu bar
-	set guioptions-=T					" remove the toolbar
+  set guioptions-=m                     " remove the menu bar
+  set guioptions-=T                     " remove the toolbar
     if exists('+colorcolumn')
-        set colorcolumn=80				" Highlight the 80th column (for PEP8, etc)
+        set colorcolumn=80              " Highlight the 80th column (for PEP8, etc)
     endif
-	if has('gui_macvim')
-		set transparency=5
-	endif
+  if has('gui_macvim')
+    set transparency=5
+  endif
 else
-	if &term == 'xterm' || &term == 'screen'
-		set t_Co=256                    " use 256 colors in terminal
-	endif
+  if &term == 'xterm' || &term == 'screen'
+    set t_Co=256                        " use 256 colors in terminal
+  endif
 endif
 
 " [MISC]
-set history=1000				        " keep 50 lines of command line history
-set undolevels=1000		                " number of levels of undo
-set visualbell		              		" don't beep
-set noerrorbells			            " don't beep
+set history=1000                        " keep 50 lines of command line history
+set undolevels=1000                     " number of levels of undo
+set visualbell                          " don't beep
+set noerrorbells                        " don't beep
 set nobackup
 set nowritebackup
 set noswapfile
@@ -90,24 +111,9 @@ nnoremap <leader><leader> <c-^>         " alternate between buffers with <leader
 " NERDTree toggle
 map <leader>n :NERDTreeToggle<CR>
 
-" FuzzyFinder
+" FuzzyFinder with CtrlP
 map <leader>p :CtrlP<CR>
 map <leader>P :CtrlPMRU<CR>
-
-" Tabularize
-nmap <leader>a= :Tabularize /=<CR>
-vmap <leader>a= :Tabularize /=<CR>
-nmap <leader>a- :Tabularize /-<CR>
-vmap <leader>a- :Tabularize /-<CR>
-nmap <leader>a: :Tabularize /:\zs<CR>
-vmap <leader>a: :Tabularize /:\zs<CR>
-
-" SuperTab
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-set completeopt=menuone,longest,preview
-
-call togglebg#map("<F5>")               " Alternate between background types.
 
 " Load file type detection, etc.
 if has("autocmd")
@@ -187,5 +193,5 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+      \ | wincmd p | diffthis
 endif
