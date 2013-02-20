@@ -108,12 +108,15 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <leader><leader> <c-^>         " alternate between buffers with <leader><leader>
 
+nmap <c-e> :e#<CR>                      " switch to last buffer
+
 " NERDTree toggle
 map <leader>n :NERDTreeToggle<CR>
 
 " FuzzyFinder with CtrlP
 map <leader>p :CtrlP<CR>
 map <leader>P :CtrlPMRU<CR>
+nmap ; :CtrlPBuffer<CR>
 
 " Load file type detection, etc.
 if has("autocmd")
