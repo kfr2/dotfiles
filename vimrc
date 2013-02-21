@@ -108,8 +108,6 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <leader><leader> <c-^>         " alternate between buffers with <leader><leader>
 
-nmap <c-e> :e#<CR>                      " switch to last buffer
-
 " NERDTree toggle
 map <leader>n :NERDTreeToggle<CR>
 
