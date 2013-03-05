@@ -41,6 +41,8 @@ set showmatch                           " show matching parentheses
 set noerrorbells visualbell t_vb=       " turn off screen flashing
 set laststatus=2                        " Always show the statusline
 set clipboard=unnamed                   " Set the clipboard for reattach-to-user-namespace
+set list
+set listchars=tab:▸\ ,eol:¬             " Show tab and EOL as characters.
 
 " [TEXT-ENTRY]
 set backspace=indent,eol,start          " allow backspacing over everything in insert mode
@@ -56,6 +58,9 @@ set wildmenu                            " show list instead of auto completing
 set wildmode=list:longest,full          " command completion <TAB>, list matches, then longest common part, then all
 
 " [SEARCHING]
+" search using normal regex
+nnoremap / /\v
+vnoremap / /\v
 set hlsearch                            " highlight search terms
 set incsearch                           " show search matches as you type
 set ignorecase                          " ignore case when searching
@@ -100,8 +105,11 @@ set noswapfile
 " [KEY-MAPPINGS]
 let mapleader = ","
 
+inoremap jj <ESC>                       " map jj to <ESC>
+
 noremap <silent><Leader>/ :nohls<CR>    " clear search highlights
 
+nnoremap <leader>w <c-w>v<c-w>l         " <leader>w splits window vertically and switches to it.
 nnoremap <c-j> <c-w>j                   " easier navigation between split windows.
 nnoremap <c-k> <c-w>k                   " switch based on window direction relative to current buffer.
 nnoremap <c-h> <c-w>h
@@ -115,6 +123,9 @@ map <leader>n :NERDTreeToggle<CR>
 map <leader>p :CtrlP<CR>
 map <leader>P :CtrlPMRU<CR>
 nmap ; :CtrlPBuffer<CR>
+
+" Show Ack search window.
+map <leader>a :Ack 
 
 " Load file type detection, etc.
 if has("autocmd")
