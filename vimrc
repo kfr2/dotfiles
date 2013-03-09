@@ -15,6 +15,7 @@ call vundle#rc()
 " :BundleClean -- confirm removal of unused bundles
 Bundle 'gmarik/vundle'
 
+Bundle 'davidhalter/jedi-vim'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'kien/ctrlp.vim'
@@ -25,7 +26,8 @@ Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
-
+Bundle 'tpope/vim-sleuth'
+"
 " [EDITING]
 filetype plugin indent on               " automatic filetype detection
 syntax on                               " turn on syntax highlighting
@@ -56,6 +58,7 @@ set smarttab                            " insert tabs at beginning of line accor
 set shiftround                          " use multiples of shiftwidth for "<" and ">"
 set wildmenu                            " show list instead of auto completing
 set wildmode=list:longest,full          " command completion <TAB>, list matches, then longest common part, then all
+set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg " filetypes to ignore in CtrlP, etc
 
 " [SEARCHING]
 " search using normal regex
@@ -66,6 +69,7 @@ set incsearch                           " show search matches as you type
 set ignorecase                          " ignore case when searching
 set smartcase                           " ... unless term contains at least one capital letter
 set showcmd                             " display incomplete commands
+let g:ackprg = 'ag --nogroup --nocolor --column' " use the_silver_searcher with ack.vim
 
 " [GUI]
 set mouse=a                             " enable use of the mouse
@@ -117,6 +121,9 @@ nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
 nnoremap <leader><leader> <c-^>         " alternate between buffers with <leader><leader>
 
+nnoremap <space> za                     " fold/unfold with <space>
+vnoremap <space> zf
+"
 " NERDTree toggle
 map <leader>n :NERDTreeToggle<CR>
 
