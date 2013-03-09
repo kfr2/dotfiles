@@ -109,7 +109,8 @@ inoremap jj <ESC>                       " map jj to <ESC>
 
 noremap <silent><Leader>/ :nohls<CR>    " clear search highlights
 
-nnoremap <leader>w <c-w>v<c-w>l         " <leader>w splits window vertically and switches to it.
+nnoremap <leader>w <c-w>s<c-w>j         " splits window horizontally and switch to new one.
+nnoremap <leader>W <c-w>v<c-w>l         " splits window vertically and switches to new one.
 nnoremap <c-j> <c-w>j                   " easier navigation between split windows.
 nnoremap <c-k> <c-w>k                   " switch based on window direction relative to current buffer.
 nnoremap <c-h> <c-w>h
