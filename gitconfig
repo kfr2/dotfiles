@@ -13,5 +13,9 @@
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [merge]
   tool = vimdiff
+[push]
+  default = current
 [credential]
   helper = osxkeychain
+[heroku]
+  account = kfr2
