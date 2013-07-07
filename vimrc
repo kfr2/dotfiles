@@ -22,12 +22,12 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'Lokaltog/vim-powerline'
 Bundle 'mileszs/ack.vim'
 Bundle 'mnoble/tomorrow-night-vim'
-Bundle 'scrooloose/nerdcommenter'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
+Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-sleuth'
-"
+
 " [EDITING]
 filetype plugin indent on               " automatic filetype detection
 syntax on                               " turn on syntax highlighting
@@ -127,7 +127,7 @@ nnoremap <leader><leader> <c-^>         " alternate between buffers with <leader
 
 nnoremap <space> za                     " fold/unfold with <space>
 vnoremap <space> zf
-"
+
 " NERDTree toggle
 map <leader>n :NERDTreeToggle<CR>
 
