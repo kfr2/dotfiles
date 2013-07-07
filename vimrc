@@ -81,6 +81,7 @@ set background=dark
 set guifont=Inconsolata-dz\ for\ Powerline:h12 
 let g:Powerline_symbols = 'fancy'       " establish the font. Powerline fonts are
                                         " available from http://bit.ly/zRuZ4V
+set noshowmode                          " Hide the default text mode (ex: -- INSERT -- below the statusline)
 
 if has('gui_running')
   set guioptions-=m                     " remove the menu bar
