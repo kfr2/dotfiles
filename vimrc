@@ -92,6 +92,12 @@ else
   if &term == 'xterm' || &term == 'screen'
     set t_Co=256                        " use 256 colors in terminal
   endif
+  set ttimeoutlen=10                    " Remove delay in vim-powerline that occurs when exiting insert mode. See See https://powerline.readthedocs.org/en/latest/tipstricks.html#fix-terminal-timeout-when-pressing-escape
+  augroup FastEscape
+    autocmd!
+    au InsertEnter * set timeoutlen=0
+    au InsertLeave * set timeoutlen=1000
+  augroup END
 endif
 
 " [MISC]
