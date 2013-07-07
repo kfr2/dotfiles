@@ -85,9 +85,6 @@ let g:Powerline_symbols = 'fancy'       " establish the font. Powerline fonts ar
 if has('gui_running')
   set guioptions-=m                     " remove the menu bar
   set guioptions-=T                     " remove the toolbar
-    if exists('+colorcolumn')
-        set colorcolumn=80              " Highlight the 80th column (for PEP8, etc)
-    endif
   if has('gui_macvim')
     set transparency=5
   endif
@@ -156,11 +153,6 @@ if has("autocmd")
         \ if line("'\"") > 1 && line("'\"") <= line("$") |
         \   exe "normal! g`\"" |
         \ endif
-    
-    " Highlight all characters past 79 columns.
-    autocmd BufEnter * highlight OverLength ctermbg=White guibg=#F8F8F8
-    autocmd BufEnter * match OverLength /\%79v.*/
-
   augroup END
 
   " Auto indent after several of Python's keywords.
