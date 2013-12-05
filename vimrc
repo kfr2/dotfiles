@@ -15,7 +15,6 @@ call vundle#rc()
 " :BundleClean -- confirm removal of unused bundles
 Bundle 'gmarik/vundle'
 
-Bundle 'davidhalter/jedi-vim'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'kien/ctrlp.vim'
@@ -24,6 +23,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'mnoble/tomorrow-night-vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'scrooloose/syntastic'
+Bundle 'sjl/gundo.vim'
 Bundle 'tomtom/tcomment_vim'
 Bundle 'tpope/vim-fugitive'
 Bundle 'tpope/vim-sleuth'
@@ -131,6 +131,9 @@ vnoremap <space> zf
 " NERDTree toggle
 map <leader>n :NERDTreeToggle<CR>
 
+" Toggle Gundo window
+nnoremap <F5> :GundoToggle<CR>
+
 " FuzzyFinder with CtrlP
 map <leader>p :CtrlP<CR>
 map <leader>P :CtrlPMRU<CR>
@@ -214,3 +217,4 @@ if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
       \ | wincmd p | diffthis
 endif
+
