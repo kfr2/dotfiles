@@ -15,6 +15,7 @@ call vundle#rc()
 " :BundleClean -- confirm removal of unused bundles
 Bundle 'gmarik/vundle'
 
+Bundle 'airblade/vim-gitgutter'
 Bundle 'jeffkreeftmeijer/vim-numbertoggle'
 Bundle 'jmcantrell/vim-virtualenv'
 Bundle 'kien/ctrlp.vim'
