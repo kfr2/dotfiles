@@ -1,11 +1,9 @@
-" https://github.com/kfr2/dotfiles/blob/master/.vimrc
-" ----------
 set nocompatible                       " Use Vim-only settings
 
 " Call Vundle to manage plugins.
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Plugins for Vundle to manage
 " -----
@@ -13,21 +11,42 @@ call vundle#rc()
 " :BundleList -- list configured bundles
 " :BundleInstall(!) -- install(update) bundles
 " :BundleClean -- confirm removal of unused bundles
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'kien/ctrlp.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/syntastic'
+Plugin 'sjl/gundo.vim'
+Plugin 'tomtom/tcomment_vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-sleuth'
+Plugin 'trusktr/seti.vim'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-notes'
 
-Bundle 'airblade/vim-gitgutter'
-Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'jmcantrell/vim-virtualenv'
-Bundle 'kien/ctrlp.vim'
-Bundle 'Lokaltog/vim-powerline'
-Bundle 'mileszs/ack.vim'
-Bundle 'mnoble/tomorrow-night-vim'
-Bundle 'scrooloose/nerdtree'
-Bundle 'scrooloose/syntastic'
-Bundle 'sjl/gundo.vim'
-Bundle 'tomtom/tcomment_vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-sleuth'
+call vundle#end()
+
+" [powerline]
+" See https://powerline.readthedocs.org/en/latest/
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
+" [syntastic]
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" See https://github.com/scrooloose/syntastic/wiki/Syntax-Checkers for a list
+" of possible syntax checkers.
+let g:syntastic_python_checkers = ['pyflakes']
+
+" [vim-notes]
+let g:notes_directories = ['~/Dropbox/notes']
+let g:notes_suffix = '.txt'
 
 " [EDITING]
 filetype plugin indent on               " automatic filetype detection
@@ -62,31 +81,71 @@ set wildmode=list:longest,full          " command completion <TAB>, list matches
 set wildignore=*.swp,*.bak,*.pyc,*.class,*.jar,*.gif,*.png,*.jpg " filetypes to ignore in CtrlP, etc
 
 " [SEARCHING]
-" search using normal regex
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v                        " search using normal regex
+" vnoremap / /\v                        " see above
 set hlsearch                            " highlight search terms
 set incsearch                           " show search matches as you type
 set ignorecase                          " ignore case when searching
 set smartcase                           " ... unless term contains at least one capital letter
 set showcmd                             " display incomplete commands
-let g:ackprg = 'ag --nogroup --nocolor --column' " use the_silver_searcher with ack.vim
+let g:ackprg = 'ag --nogroup --nocolor --column'    " use the silver searcher with ack.vim
 
 " [GUI]
 set mouse=a                             " enable use of the mouse
 map <ScrollWheelUp> <C-Y>
 map <ScrollWheelDown> <C-E>
 set title                               " change the terminal's level
-colorscheme Tomorrow-Night              " establish the colorscheme
-set background=dark
-set guifont=Inconsolata-dz\ for\ Powerline:h12 
-let g:Powerline_symbols = 'fancy'       " establish the font. Powerline fonts are
-                                        " available from http://bit.ly/zRuZ4V
+colorscheme Seti                        " establish the colorscheme
+" set background=dark
 set noshowmode                          " Hide the default text mode (ex: -- INSERT -- below the statusline)
+set colorcolumn=72,80                      " Show column at specified characters
+
+" change cursor based on mode if inside tmux
+if exists('$ITERM_PROFILE')
+  if exists('$TMUX') 
+    let &t_SI = "\<Esc>[3 q"
+    let &t_EI = "\<Esc>[0 q"
+  else
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  endif
+end
+
+" for tmux to automatically set paste and nopaste mode at the time pasting (as
+" happens in VIM UI)
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
+" end automatic set paste/nopaste
+
 
 if has('gui_running')
+  set guifont=Source\ Code\ Pro\ for\ PowerLine:h13
   set guioptions-=m                     " remove the menu bar
   set guioptions-=T                     " remove the toolbar
+
+  if has('gui_vimr')
+    set transparency=5
+  endif
+
   if has('gui_macvim')
     set transparency=5
   endif
@@ -94,7 +153,6 @@ else
   if &term == 'xterm' || &term == 'screen'
     set t_Co=256                        " use 256 colors in terminal
   endif
-  set ttimeoutlen=10                    " Remove delay in vim-powerline that occurs when exiting insert mode. See See https://powerline.readthedocs.org/en/latest/tipstricks.html#fix-terminal-timeout-when-pressing-escape
   augroup FastEscape
     autocmd!
     au InsertEnter * set timeoutlen=0
@@ -103,7 +161,7 @@ else
 endif
 
 " [MISC]
-set history=1000                        " keep 50 lines of command line history
+set history=1000                        " keep 1000 lines of command line history
 set undolevels=1000                     " number of levels of undo
 set visualbell                          " don't beep
 set noerrorbells                        " don't beep
@@ -116,10 +174,10 @@ let mapleader = ","
 
 inoremap jj <ESC>                       " map jj to <ESC>
 
-noremap <silent><Leader>/ :nohls<CR>    " clear search highlights
+noremap <silent><Leader>/ :nohls<CR>    " clear search highlights with <leader>/
 
-nnoremap <leader>w <c-w>s<c-w>j         " splits window horizontally and switch to new one.
-nnoremap <leader>W <c-w>v<c-w>l         " splits window vertically and switches to new one.
+nnoremap <leader>- <c-w>s<c-w>j         " splits window horizontally and switch to new one.
+nnoremap <leader>+ <c-w>v<c-w>l         " splits window vertically and switches to new one.
 nnoremap <c-j> <c-w>j                   " easier navigation between split windows.
 nnoremap <c-k> <c-w>k                   " switch based on window direction relative to current buffer.
 nnoremap <c-h> <c-w>h
@@ -171,51 +229,4 @@ if has("autocmd")
 
   " Trim whitespace from the ends of lines when saving a Python file.
   autocmd BufWritePre *.py normal m`:%s/\s\+$//e``
-
-  " Enable easier jumping between relative Django files.
-  let g:last_relative_dir = ''
-  nnoremap \1 :call RelatedFile ("models.py")<cr>
-  nnoremap \2 :call RelatedFile ("views.py")<cr>
-  nnoremap \3 :call RelatedFile ("urls.py")<cr>
-  nnoremap \4 :call RelatedFile ("admin.py")<cr>
-  nnoremap \5 :call RelatedFile ("tests.py")<cr>
-  nnoremap \6 :call RelatedFile ( "templates/" )<cr>
-  nnoremap \7 :call RelatedFile ( "templatetags/" )<cr>
-  nnoremap \8 :call RelatedFile ( "management/" )<cr>
-  nnoremap \0 :e settings.py<cr>
-  nnoremap \9 :e urls.py<cr>
-
-  fun! RelatedFile(file)
-    " This is to check that the directory looks djangoish
-    if filereadable(expand("%:h"). '/models.py') || isdirectory(expand("%:h") . "/templatetags/")
-      exec "edit %:h/" . a:file
-      let g:last_relative_dir = expand("%:h") . '/'
-      return ''
-    endif
-    if g:last_relative_dir != ''
-      exec "edit " . g:last_relative_dir . a:file
-      return ''
-    endif
-    echo "Cant determine where relative file is : " . a:file
-    return ''
-  endfun
-
-  fun SetAppDir()
-    if filereadable(expand("%:h"). '/models.py') || isdirectory(expand("%:h") . "/templatetags/")
-      let g:last_relative_dir = expand("%:h") . '/'
-      return ''
-    endif
-  endfun
-
-  autocmd BufEnter *.py call SetAppDir()
-
 endif " has("autocmd")
-
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-      \ | wincmd p | diffthis
-endif
-

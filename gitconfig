@@ -1,6 +1,6 @@
 [user]
   name = Kevin Richardson
-  email = kevin@magically.us
+  email = kevin@kevinrichardson.co
 [color]
   branch = auto
   diff = auto
@@ -17,5 +17,3 @@
   default = current
 [credential]
   helper = osxkeychain
-[heroku]
-  account = kfr2
