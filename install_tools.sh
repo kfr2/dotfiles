@@ -11,3 +11,6 @@ git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 
 # miscellaneous
 sudo pacman -Sy exa bat fd ncdu fzf ripgrep diff-so-fancy jq
+
+# vscode
+yaourt -S visual-studio-code-bin
