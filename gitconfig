@@ -1,19 +1,42 @@
 [user]
-  name = Kevin Richardson
-  email = kevin@kevinrichardson.co
+	name = Kevin Richardson
+	email = krichardson@turnitin.com
 [color]
   branch = auto
   diff = auto
   interactive = auto
   status = auto
+  ui = true
 [core]
   editor = vim
-  excludesfile = ~/.gitignore
+  excludesfile = /Users/kevin/.gitignore_global
 [alias]
+  g = grep --break --heading --line-number
   lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
 [merge]
   tool = vimdiff
+[rebase]
+  autosquash = true
+[commit]
+  template = ~/.gitmessage
+[pull]
+  default = current
 [push]
   default = current
 [credential]
   helper = osxkeychain
+[pager]
+  diff = diff-so-fancy | less --tabs=1,5 -RFX
+  show = diff-so-fancy | less --tabs=1,5 -RFX
+[color "diff-highlight"]
+  oldNormal = red bold
+  oldHighlight = red bold 52
+  newNormal = green bold
+  newHighlight = green bold 22
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+[flake8]
+  strict = true

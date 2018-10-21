@@ -1,0 +1,19 @@
+#!/bin/sh
+alias 'cls'='clear'
+alias 'l'='ls -lah'
+alias 'ls'='exa'
+alias 'tree'='tree -L 2'
+alias 'gc'='git commit --verbose'
+alias 'gca'='git commit --verbose --amend'
+alias 'gg'='git grep'
+alias 'grc'='git rebase --continue'
+alias 'grbi'='git rebase -i master'
+alias 'grbis'='git rebase -i staging'
+
+alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
+
+alias 'd'='docker'
+alias 'dc'='docker-compose'
+alias 'dcx'='docker-compose exec'
+alias 'dps'='docker ps -a'
+

@@ -1,0 +1,4 @@
+mafredri/zsh-async
+sindresorhus/pure
+bobthecow/git-flow-completion
+zsh-users/zsh-syntax-highlighting

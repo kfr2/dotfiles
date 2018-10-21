@@ -1,34 +1,55 @@
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+#!/usr/local/bin/zsh
+export PATH=$HOME/bin:$HOME/bin/FlameGraph:$HOME/.cargo/bin:$HOME/npm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export TERM=xterm-256color
+export LANG=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 
-export PATH=~/bin:~/usr/local/bin:$PATH
+# python
+export PIP_DOWNLOAD_CACHE=$HOME/.pip/cache
+export PYTHONUNBUFFERED="true"
+export PYTHONDONTWRITEBYTECODE="true"
 
-export EDITOR="vim"
-export ARCHFLAGS="-arch x86_64"
-export BYOBU_PREFIX=`brew --prefix`
-
-alias 'cls'='clear'
-alias 'l'='ls -lah'
-alias 'tree'='tree -L 2'
-
-alias 'dm'='docker-machine'
-alias 'docker-on'='dm start dev && eval "$(dm env dev)"'
-alias 'docker-off'='export DOCKER_HOST='
-alias 'dl'='docker ps -l -q'  # shows ID of last run container
-alias 'docker-stop'='docker stop $(docker ps -a -q)'
-alias 'docker-rm-stopped'='docker rm $(docker ps -a -q)'
-alias 'docker-rm-all'='docker stop $(docker ps -a -q) && docker rm $(docker ps -a -q)'
-
-powerline-daemon -q
-. /usr/local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-
-. ~/bin/z
-function precmd () {
-  _z --add "$(pwd -P)"
+# pyenv & pyenv-virtualenv -- lazy-loaded
+pyenv() {
+  eval "$(command pyenv init -)"
+  eval "$(command pyenv virtualenv-init -)"
+  pyenv "$@"
 }
 
-. ~/bin/git.plugin.zsh
-. ~/bin/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# nvm -- lazy-loaded
+nvm() {
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+  nvm "$@"
+}
 
+# golang
+export GOPATH=$HOME/projects/go
+export PATH=$GOPATH/bin:$PATH
+
+# Various settings.
+export EDITOR="vim"
+export ARCHFLAGS="-arch x86_64"
+bindkey -e  # use emacs mode
+
+# Command aliases.
+source ~/dotfiles/aliases.sh
+
+# fzf
+source /usr/share/fzf/completion.zsh
+source /usr/share/fzf/key-bindings.zsh
+# This alias is from https://remysharp.com/2018/08/23/cli-improved
+alias preview="fzf --preview 'bat --color \"always\" {}'"
+# add support for ctrl+o to open selected file in VS Code
+export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
+
+
+# From https://stackoverflow.com/a/26479426
+autoload -U compinit && compinit
+
+# Antibody packages
+source <(antibody init)
+antibody bundle < ~/dotfiles/zsh_plugins.txt
+
+# Pure prompt
+export PURE_PROMPT_SYMBOL=$
