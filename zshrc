@@ -1,5 +1,5 @@
 #!/usr/local/bin/zsh
-export PATH=$HOME/bin:$HOME/bin/FlameGraph:$HOME/.cargo/bin:$HOME/npm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+export PATH=$HOME/bin:$HOME/.cargo/bin:$HOME/npm/bin:/usr/local/opt/go/libexec/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export TERM=xterm-256color
 export LANG=en_US.UTF-8
 export LC_CTYPE=en_US.UTF-8
@@ -19,7 +19,7 @@ pyenv() {
 # nvm -- lazy-loaded
 nvm() {
   export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh" # This loads nvm
   nvm "$@"
 }
 
@@ -36,15 +36,13 @@ bindkey -e  # use emacs mode
 source ~/dotfiles/aliases.sh
 
 # fzf
-source /usr/share/fzf/completion.zsh
-source /usr/share/fzf/key-bindings.zsh
-# This alias is from https://remysharp.com/2018/08/23/cli-improved
-alias preview="fzf --preview 'bat --color \"always\" {}'"
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 # add support for ctrl+o to open selected file in VS Code
 export FZF_DEFAULT_OPTS="--bind='ctrl-o:execute(code {})+abort'"
 
 
 # From https://stackoverflow.com/a/26479426
+fpath=(/usr/local/share/zsh-completions $fpath)
 autoload -U compinit && compinit
 
 # Antibody packages
@@ -53,3 +51,4 @@ antibody bundle < ~/dotfiles/zsh_plugins.txt
 
 # Pure prompt
 export PURE_PROMPT_SYMBOL=$
+

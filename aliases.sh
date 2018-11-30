@@ -12,6 +12,9 @@ alias 'grbis'='git rebase -i staging'
 
 alias du="ncdu --color dark -rr -x --exclude .git --exclude node_modules"
 
+# This alias is from https://remysharp.com/2018/08/23/cli-improved
+alias preview="fzf --height 40% --preview 'if file -i {}|grep -q binary; then file -b {}; else bat --color \"always\" --line-range :40 {}; fi'"
+
 alias 'd'='docker'
 alias 'dc'='docker-compose'
 alias 'dcx'='docker-compose exec'
