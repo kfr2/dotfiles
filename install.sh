@@ -1,8 +1,6 @@
 #!/bin/sh
 
 
-ln -s ~/dotfiles/Xresources ~/.Xresources
-ln -s ~/dotfiles/i3config ~/.i3/config
 ln -s ~/dotfiles/zshrc ~/.zshrc
 ln -s ~/dotfiles/tmux.conf ~/.tmux.conf
 ln -s ~/dotfiles/hushlogin ~/.hushlogin
