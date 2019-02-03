@@ -1,5 +1,6 @@
 mafredri/zsh-async
 sindresorhus/pure
-b4b4r07/enhancd
+agkozak/zsh-z
+andrewferrier/fzf-z
 bobthecow/git-flow-completion
 zdharma/fast-syntax-highlighting
